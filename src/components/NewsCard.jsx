@@ -4,7 +4,6 @@ import {
   CardContent,
   Typography,
   CardMedia,
-  CardActionArea,
   Grid,
   Box,
   Button,
@@ -20,45 +19,48 @@ const NewsCard = ({ article, id, currentPage }) => {
       <Card
         style={{ height: "100%", display: "flex", flexDirection: "column" }}
       >
-        <CardActionArea
-          component={Link}
-          to={`/news/${id}?page=${currentPage}`}
-          state={{ article }}
-          style={{ flex: 1 }}
-        >
+        <Box>
           {article.urlToImage ? (
             <CardMedia
               component="img"
-              height="180"
+              height="180px"
               image={article.urlToImage}
               alt="Image not found"
             />
           ) : (
             <CardMedia
               component="img"
-              height="180"
+              height="180px"
               image={noImage}
               alt="Image not found"
             />
           )}
-          <CardContent>
-            <Typography gutterBottom variant="h6" component="div" noWrap>
-              {article.title}
-            </Typography>
-            <Typography
-              className="description"
-              variant="body2"
-              color="text.secondary"
-            >
-              {article.description}
-            </Typography>
-          </CardContent>
-          <Box display="flex" justifyContent="left">
-            <Button variant="contained" size="large" color="primary">
-              Read more →
-            </Button>
-          </Box>
-        </CardActionArea>
+        </Box>
+        <CardContent>
+          <Typography gutterBottom variant="h6" component="div" noWrap>
+            {article.title}
+          </Typography>
+          <Typography
+            className="description"
+            variant="body2"
+            color="text.secondary"
+            minHeight="4rem"
+          >
+            {article.description}
+          </Typography>
+        </CardContent>
+        <Box height="100%" display="flex" justifyContent="left" padding="16px">
+          <Button
+            component={Link}
+            to={`/news/${id}?page=${currentPage}`}
+            state={{ article }}
+            variant="contained"
+            size="large"
+            color="primary"
+          >
+            Read more →
+          </Button>
+        </Box>
       </Card>
     </Grid>
   );
